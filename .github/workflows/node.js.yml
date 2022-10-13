@@ -1,4 +1,4 @@
-name: Test Newman
+name: Test Newman HTML Report
 on:
   push:
     branches:
@@ -38,7 +38,7 @@ jobs:
       # Upload report as artifact
       - uses: actions/upload-artifact@v3
         with:
-          name: bewnab
+          name: report
           if: always()
           path: ${{ github.workspace }}/TestResults/index.html
           
