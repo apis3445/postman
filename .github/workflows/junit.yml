@@ -45,4 +45,4 @@ jobs:
         with:
           name: Junit Tests           # Name of the check run which will be created
           path: ${{ github.workspace }}/TestResults/*.xml     # Path to test results
-          reporter: Junit        # Format of test results
+          reporter: java-junit       # Format of test results
