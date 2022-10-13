@@ -1,4 +1,4 @@
-name: Test Newman
+name: Test Newman Junit
 on:
   push:
     branches:
@@ -31,7 +31,7 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run Regression.postman_collection.json -e Login/Login.Azure.postman_environment.json  -x --reporters  cli,junit --reporter-junit-export TestResults\regressionJunit.xml
+          newman run Regression.postman_collection.json -e CaducaRest.Azure.postman_environment.json  -x --reporters  cli,junit --reporter-junit-export TestResults\regressionJunit.xml
           
       - name: Test Report Junit
         uses: dorny/test-reporter@v1
