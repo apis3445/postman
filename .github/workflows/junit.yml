@@ -36,7 +36,7 @@ jobs:
       # Upload report as artifact
       - uses: actions/upload-artifact@v3
         with:
-          name: junit
+          name: java-junit
           path: ${{ github.workspace }}/TestResults/regressionJunit.xml
 
       - name: Test Report Junit
@@ -45,4 +45,4 @@ jobs:
         with:
           name: Junit Tests           # Name of the check run which will be created
           path: ${{ github.workspace }}/TestResults/*.xml     # Path to test results
-          reporter: jest-junit        # Format of test results
+          reporter: Junit        # Format of test results
