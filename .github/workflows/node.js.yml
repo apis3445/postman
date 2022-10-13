@@ -33,7 +33,7 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run Regression.postman_collection.json -e CaducaRest.Azure.postman_environment.json -r htmlextra --reporter-htmlextra-export TestResults/index.html 
+          newman run Regression.postman_collection.json -e CaducaRest.Azure.postman_environment.json -r htmlextra --reporter-htmlextra-export ${{ github.workspace }}/TestResults/index.html 
 
       # Upload report as artifact
       - uses: actions/upload-artifact@v3
@@ -43,8 +43,8 @@ jobs:
           path: ${{ github.workspace }}/TestResults/index.html
           
       - name: Publish to Github Pages
-        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
+          if: always()
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ github.workspace }}/TestResults/
