@@ -36,7 +36,7 @@ jobs:
       # Upload report as artifact
       - uses: actions/upload-artifact@v3
         with:
-          name: bewnab
+          name: junit
           if: always()
           path: ${{ github.workspace }}/TestResults/regressionJunit.xml
 
@@ -45,5 +45,5 @@ jobs:
         if: success() || failure()    # run this step even if previous step failed
         with:
           name: Junit Tests           # Name of the check run which will be created
-          path: TestResults\*.xml     # Path to test results
+          path: ${{ github.workspace }}/TestResults/*.xml     # Path to test results
           reporter: jest-junit        # Format of test results
