@@ -1,2 +1,2 @@
 # postman
-Postman sample
+Postman collection sample
