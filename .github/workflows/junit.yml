@@ -1,0 +1,42 @@
+name: Test Newman
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+
+      # INstall Node on the runner
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.x"
+
+
+      # Install the newman command line utility and also install the html extra reporter
+      - name: Install newman
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-junitfull
+      # Make directory to upload the test results
+      - name: Make Directory for results
+        run: mkdir -p TestResults
+
+
+      # Run the POSTMAN collection
+      - name: Run POSTMAN collection
+        run: |
+          newman run Regression.postman_collection.json -e Login/Login.Azure.postman_environment.json  -x --reporters  cli,junit --reporter-junit-export TestResults\regressionJunit.xml
+          
+      - name: Test Report Junit
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: Junit Tests           # Name of the check run which will be created
+          path: TestResults/*.xml     # Path to test results
+          reporter: jest-junit        # Format of test results
