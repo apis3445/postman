@@ -31,7 +31,7 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run Regression.postman_collection.json -e CaducaRest.Azure.postman_environment.json  -x --reporters  cli,junit --reporter-junit-export ${{ github.workspace }}/TestResults/regressionJunit.xml
+          newman run Regression.postman_collection.json -e Regression.Azure.postman_environment.json  -x --reporters  cli,junit --reporter-junit-export ${{ github.workspace }}/TestResults/regressionJunit.xml
 
       # Upload report as artifact
       - uses: actions/upload-artifact@v3
