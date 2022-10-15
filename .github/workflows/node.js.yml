@@ -33,7 +33,7 @@ jobs:
       # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run Regression.postman_collection.json -e CaducaRest.Azure.postman_environment.json -r htmlextra --reporter-htmlextra-export ${{ github.workspace }}/TestResults/index.html 
+          newman run Regression.postman_collection.json -e Regression.Azure.postman_environment.json -r htmlextra --reporter-htmlextra-export ${{ github.workspace }}/TestResults/index.html 
 
       # Upload report as artifact
       - uses: actions/upload-artifact@v3
