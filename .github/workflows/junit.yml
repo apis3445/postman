@@ -29,9 +29,13 @@ jobs:
 
 
       # Run the POSTMAN collection
-      - name: Run POSTMAN collection
+      #- name: Run POSTMAN collection
+      #  run: |
+      #    newman run Regression.postman_collection.json -e Regression.Azure.postman_environment.json  -x --reporters  cli,junit --reporter-junit-export ${{ github.workspace }}/TestResults/regressionJunit.xml
+
+      - name: Run POSTMAN collection URL
         run: |
-          newman run Regression.postman_collection.json -e Regression.Azure.postman_environment.json  -x --reporters  cli,junit --reporter-junit-export ${{ github.workspace }}/TestResults/regressionJunit.xml
+          newman run https://api.postman.com/collections/1273809-5423fc7b-26df-4dec-8686-a4f45be6d3f3?access_key=PMAT-01H13A9RB9YWED6FK5DJ4WACMB -e https://www.postman.com/gold-astronaut-357480/workspace/my-workspace/environment/1273809-8a9f3367-f4e2-4530-9061-f6613976ba71  -x --reporters  cli,junit --reporter-junit-export ${{ github.workspace }}/TestResults/regressionJunit.xml
 
       # Upload report as artifact
       - uses: actions/upload-artifact@v3
