@@ -12,3 +12,10 @@ Includes
 - GraphQL
 - GitHub Actions
 
+GitHub Actions contains the next examples:
+
+- Junit Test with files in GitHub repo and export Junit results
+- Main Test  with Postman cli (collections in Postman)
+- Node Test and generate test results as HTML in GitHub pages
+
+
