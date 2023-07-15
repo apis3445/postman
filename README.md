@@ -1,7 +1,10 @@
 # postman
-Postman collection sample
+Postman collection sample 
 
 [![Test Newman Junit](https://github.com/apis3445/postman/actions/workflows/junit.yml/badge.svg)](https://github.com/apis3445/postman/actions/workflows/junit.yml)
+
+[![Automated API tests using Postman CLI](https://github.com/apis3445/postman/actions/workflows/main.yml/badge.svg)](https://github.com/apis3445/postman/actions/workflows/main.yml)
+
 
 Postman sample to run with github actions
 
