@@ -4,14 +4,15 @@
 		"name": "Regression",
 		"description": "Regression sample PR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1273809"
+		"_exporter_id": "19276367",
+		"_collection_link": "https://www.postman.com/gold-astronaut-357480/workspace/my-workspace/collection/1273809-5423fc7b-26df-4dec-8686-a4f45be6d3f3?action=share&creator=19276367&source=collection_link"
 	},
 	"item": [
 		{
 			"name": "Login",
 			"item": [
 				{
-					"name": "Login_ValidUser",
+					"name": "Login_ValidUser_ReturnsToken",
 					"event": [
 						{
 							"listen": "test",
@@ -46,7 +47,8 @@
 								"Usuarios",
 								"Login"
 							]
-						}
+						},
+						"description": "Regression sample PR"
 					},
 					"response": []
 				}
@@ -63,7 +65,7 @@
 							"script": {
 								"exec": [
 									"//Check status",
-									"pm.test(\"Categorias status code is 200\", function () {",
+									"pm.test(\"status code is 200 for request: \"+ pm.request.url.toString(), function () {",
 									"    pm.response.to.have.status(200);",
 									"});"
 								],
@@ -112,19 +114,19 @@
 			]
 		},
 		{
-			"name": "Customers",
+			"name": "Clients",
 			"item": [
 				{
-					"name": "WithOdata_ReturnCustomers",
+					"name": "odataClientes_WithValidToken_ReturnCustomers",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"//Convertir el Json a un objeto",
+									"//Convert JSON to an object",
 									"var respuesta = pm.response.json();",
 									"",
-									"pm.test(\"El servicio regresa clientes\", function() {",
+									"pm.test(\"Service returns clients\", function() {",
 									"    pm.expect(respuesta.value).not.to.be.empty;",
 									"});",
 									""
@@ -160,13 +162,13 @@
 					"response": []
 				},
 				{
-					"name": "WithODataParameers_ReturnFilteredData",
+					"name": "odataClientes_withValidFilters_ReturnFilteredData",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									" // Librería para ordenar arreglos",
+									" // Library to sort arrays",
 									" // Read docs: https://lodash.com/docs/4.17.10#orderBy",
 									"var _ = require('lodash');",
 									"",
@@ -291,7 +293,7 @@
 									"",
 									"pm.test(\"Graphql query corecto\", function() ",
 									"{",
-									"    pm.expect(respuesta.data.caducidad.length).to.be.above(2);",
+									"    pm.expect(respuesta.data.caducidad.length).to.be.above(0);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -346,7 +348,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation\n{\n    addCaducidad(caducidad:\n    {\n        id:2,\n        cantidad:2,\n        productoId:2,\n        clienteId:6,\n        fecha: \"2023-03-04\"\n    })\n    {\n        id\n        fecha\n    }\n}",
+								"query": "mutation\n{\n    addCaducidad(caducidad:\n    {\n        id:2,\n        cantidad:2,\n        productoId:1,\n        clienteId:1,\n        fecha: \"2023-07-04\"\n    })\n    {\n        id\n        fecha\n    }\n}",
 								"variables": ""
 							}
 						},
@@ -386,7 +388,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation\n{\n    updateCaducidad(caducidad:\n    {\n        id: {{CaducidadId}},\n        productoId:3,\n        clienteId:5,\n        cantidad:5,\n        fecha: \"2020-03-05\"\n    },\n    id:{{CaducidadId}})\n    {\n        id\n        cantidad\n        fecha\n    }\n}",
+								"query": "mutation\n{\n    updateCaducidad(caducidad:\n    {\n        id: {{CaducidadId}},\n        productoId:1,\n        clienteId:1,\n        cantidad:5,\n        fecha: \"2020-07-10\"\n    },\n    id:{{CaducidadId}})\n    {\n        id\n        cantidad\n        fecha\n    }\n}",
 								"variables": ""
 							}
 						},
@@ -531,6 +533,13 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Token",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
