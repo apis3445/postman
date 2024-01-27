@@ -8,23 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-
-      # INstall Node on the runner
+      # Install Node on the runner
       - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: "18.x"
+          node-version: "20.x"
 
 
-      # Install the newman command line utility and also install the html extra reporter
-      - name: Install newman
+      # Install the Newman command line utility and also install the HTML extra reporter
+      - name: Install Newman
         run: |
           npm install -g newman
           npm install -g newman-reporter-junitfull
-      # Make directory to upload the test results
-      - name: Make Directory for results
+      # Make a directory to upload the test results
+      - name: Make a Directory for results
         run: mkdir -p TestResults
 
 
